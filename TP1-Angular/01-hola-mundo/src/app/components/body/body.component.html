@@ -1,0 +1,28 @@
+<div class="row text-center mt-3">
+    <div class="col">
+        <h2>*Ng if</h2>
+        <hr>
+        <div *ngIf="mostrar" class="row d-flex justify-content-center">
+            <div class="card text-white bg-dark mb-3 w-75">
+                <div class="card-body">
+                  <h5 class="card-title">{{frase.autor}}</h5>
+                  <p class="card-text">{{frase.mensaje}}</p>
+                </div>
+            </div>
+        </div>
+        <button (click)="mostrar = !mostrar" class="btn btn-outline-dark">Mostrar/Ocultar</button>
+    </div>
+
+    <div class="col">
+        <h2>*Ng for</h2>
+        <hr>
+        <div class="row d-flex justify-content-center">
+            <ul class="list-group w-75">
+                <li class="list-group-item bg-dark c-wh">EQUIPOS</li>
+                <li *ngFor="let equipo of equipos; let i = index" class="list-group-item hov-equipo">
+                    {{i + 1}})  {{equipo}}
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
