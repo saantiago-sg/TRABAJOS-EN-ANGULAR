@@ -11,13 +11,14 @@ export class CardHeroeComponent implements OnInit {
   // input hace q algo pueda venir de afuera, en este caso seria heroe
   @Input() index: number;
   // tslint:disable-next-line:variable-name
-  
+
   @Output() heroeSeleccionado: EventEmitter<number>;
 
-  constructor(private _router: Router) { 
+  // tslint:disable-next-line:variable-name
+  constructor(private _router: Router) {
     this.heroeSeleccionado = new EventEmitter();
   }
-  
+
   ngOnInit(): void {
   }
 
