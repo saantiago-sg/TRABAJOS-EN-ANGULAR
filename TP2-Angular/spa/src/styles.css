@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+.animated {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  .fast {
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .fadeIn {
+    animation-name: fadeIn;
+  }
+
+  .navbar-nav .nav-link{
+      color: gray;
+  }
+    .navbar-nav .nav-link:focus, .navbar-nav .nav-link:hover{
+      color: white;
+  }
+
+  body{
+    padding-bottom: 4rem;
+  }
+  .jumbotron{
+    background-color: gray;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 4px 4px 4px rgb(0 0 0 / 25%);
+  }
