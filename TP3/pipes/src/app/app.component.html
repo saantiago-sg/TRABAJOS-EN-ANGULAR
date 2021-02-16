@@ -1,0 +1,196 @@
+<h1 class="mt-3">Pipes <small>Angular</small></h1>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>Variable</th>
+          <th>Pipe</th>
+          <th>Salida</th>
+          <th>Resultado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ nombreDos }}</td>
+          <td> Capitalizado </td>
+          <td>{{ nombreDos | capitalizado: true }}</td> <!-- primer pipe-->
+          <td>Creo mi propio pipe desde ng g p namefolder/namefill</td>
+        </tr>
+
+        <tr>
+          <td>{{ nombre }}</td>
+          <td> Uppercase </td>
+          <td>{{ nombre | uppercase }}</td> <!-- segundo pipe-->
+          <td>Todo en mayuscula</td>
+        </tr>
+
+        <tr>
+          <td>{{ nombre }}</td>
+          <td> Lowercase </td>
+          <td>{{ nombre | lowercase }}</td> 
+          <td>Todo en minuscula</td>
+        </tr>
+
+        <tr>
+          <td>{{ nombre }}</td>
+          <td> Slice:3 </td>
+          <td>{{ nombre | slice:3 }}</td> 
+          <td>Elimina la cantidad q le pasa por parametro</td>
+        </tr>
+
+        <tr>
+          <td>{{ arreglo }}</td>
+          <td> Slice:0:3 </td>
+          <td>{{ arreglo | slice:0:3 }}</td> 
+          <td>En este caso es lo mismo, nada mas q pasa por parametro el punto de inicio y final</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td> number </td>
+          <td>{{ PI | number}}</td> 
+          <td>Redondea el numero</td>
+        </tr>
+
+        <tr>
+          <td>{{ PI }}</td>
+          <td> number:'.0-5' o number:'1.0-0' </td>
+          <td>{{ PI | number:'.0-5'}}</td> 
+          <td>Redondea el numero de acuerdo a los decimales q declare</td>
+        </tr>
+
+        <tr>
+          <td>{{ porcentaje }}</td>
+          <td> percent</td>
+          <td>{{ porcentaje | percent}}</td> 
+          <td>Pasa el valor a porcentaje</td>
+        </tr>
+
+        <tr>
+          <td>{{ porcentaje }}</td>
+          <td> percent:'2.2-2' </td>
+          <td>{{ porcentaje | percent :'2.2-2'}}</td> 
+          <td>Pasa el valor a porcentaje pero con distintos valores q recibe por parametro</td>
+        </tr>
+
+        <tr>
+          <td>{{ salario }}</td>
+          <td> currency </td>
+          <td>{{ salario | currency}}</td> 
+          <td>Pasa el valor a signo pesos</td>
+        </tr>
+
+        <tr>
+          <td>{{ salario }}</td>
+          <td> currency:'EUR' </td>
+          <td>{{ salario | currency:'EUR'}}</td> 
+          <td>Pasa el valor al signo q se le aplique, en este caso a euros</td>
+        </tr>
+
+        <tr>
+          <td>{{ salario }}</td>
+          <td> currency:'CAD':'symbol':'.0-0' </td>
+          <td>{{ salario | currency:'CAD':'symbol-narrow':'.0-0'}}</td> 
+          <td>En este caso agregamos el signo del pais y le sacamos los decimales</td>
+        </tr>
+
+        <tr>
+          <td>{{ valorPromesa }}</td>
+          <td> Async </td>
+          <td>{{ valorPromesa | async }}</td> 
+          <td>Utilizamos una promesaq despues de 4 seg muestra un mensaje</td>
+        </tr>
+
+        <tr>
+          <td>{{ fecha }}</td>
+          <td> Date </td>
+          <td>{{ fecha | date }}</td> 
+          <td>Muestra la fecha actual</td>
+        </tr>
+
+        <tr>
+          <td>{{ fecha }}</td>
+          <td> Date:'short' </td>
+          <td>{{ fecha | date:'short' }}</td> 
+          <td>Muestra la fecha actual en formato pequeño</td>
+        </tr>
+
+        <tr>
+          <td>{{ fecha }}</td>
+          <td> Date:'MMMM-dd' </td>
+          <td>{{ fecha | date:'MMMM-dd' }}</td> 
+          <td>Modifico la fecha como yo quiera</td>
+        </tr>
+
+        <tr>
+          <td>{{ fecha }}</td>
+          <td> Date:'MMMM-dd':'':'en' </td>
+          <td>{{ fecha | date:'MMMM-dd':'':'en' }}</td> 
+          <td>Configuro a idioma ingles</td>
+        </tr>
+
+        <tr>
+          <td>{{ fecha }}</td>
+          <td> Date:'MMMM-dd':'':'fr' </td>
+          <td>{{ fecha | date:'MMMM-dd':'':'fr' }}</td> 
+          <td>Configuro a idioma a frances</td>
+        </tr>
+
+                <tr>
+          <td>{{ fecha }}</td>
+          <td> Date:'MMMM-dd':'':{{ idioma }} <br>
+            <button (click)="idioma='en'" class="btn btn-danger">English</button>
+            <button (click)="idioma='es'" class="btn btn-success mt-1">Español</button>
+            <button (click)="idioma='fr'" class="btn btn-secondary mt-1">Frances</button>
+          </td>
+          <td>{{ fecha | date:'MMMM-dd':'':idioma }} </td>
+          <td>Configura idioma desde un boton</td>
+        </tr>
+
+<!-- tarea -->
+
+        <tr>
+          <td>{{ nombre }}</td>
+          <td> Contrasena: {{ activar }} <br> 
+            <button (click)="activar = !activar" class="btn btn-outline-primary">Activar/Desactivar</button>
+          </td>
+          <td>{{ nombre | contrasena:activar }}</td> 
+          <td>Configuro a idioma a frances</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Slices</h3>
+  <ul>
+    <li *ngFor="let item of arreglo | slice:5:12"> {{ item }}</li>
+  </ul>
+</div>
+
+<hr>
+<h3>JSON</h3>
+<div class="row mb-5">
+  <div class="col">
+    <pre>
+      <p>{{ equipos | json }}</p> <!-- puede fallar el pipe json si hay funciones o metodos pq no puede interpretar -->
+    </pre>
+  </div>
+</div>
+
+<h3 class="mt-4"> DOMseguro</h3>
+<hr>
+<div class="row mb-5">
+  <div class="col text-center">
+    <iframe width="560"
+            height="315"
+            [src]="videoUrl | domseguro"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+    </iframe>
+  </div>
+</div>

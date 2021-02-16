@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-12 my-4">
+        <input type="text" #termino (keyup)="buscarArtista(termino.value)" class="form-control" placeholder="Buscar artista">
+    </div> <!-- con termino paso el valor q escribe el usuario en el input-->
+</div>
+
+<div class="alert alert-danger" *ngIf="error">
+    <h3>{{ mensajeError }}</h3>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit aliquid libero excepturi, consequatur esse, quas nemo veritatis et minus totam repudiandae alias molestias temporibus. Facere adipisci ut voluptatem ipsum explicabo!</p>
+</div>
+
+<app-loading *ngIf="loading"></app-loading>
+<app-card [items]="artistas" *ngIf="!loading"></app-card>
+

@@ -1,0 +1,16 @@
+<div class="row row-cols-1 row-cols-md-3 g-4 puntero">
+    <div (click)="verArtista(item)" class="col" *ngFor="let item of items">
+      <div class="card h-100">
+        <img [src]="item.images | noimage" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.name }}</h5>
+          <p class="card-text">
+              <span class="badge bg-primary" *ngFor="let artista of item.artists">{{ artista.name }}</span>
+          </p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">Last updated 3 mins ago</small>
+        </div>
+      </div>
+    </div>
+  </div>
