@@ -17,6 +17,8 @@ import { HeroesComponent } from './components/heroes/heroes.component';
 import { HeroeComponent } from './components/heroe/heroe.component';
 import { BuscarComponent } from './components/buscar/buscar.component';
 import { CardHeroeComponent } from './components/card-heroe/card-heroe.component';
+import { NextMoviesComponent } from './components/next-movies/next-movies.component';
+import { FooterComponent } from './components/shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { CardHeroeComponent } from './components/card-heroe/card-heroe.component
     HeroesComponent,
     HeroeComponent,
     BuscarComponent,
-    CardHeroeComponent
+    CardHeroeComponent,
+    NextMoviesComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

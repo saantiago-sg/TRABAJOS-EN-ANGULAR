@@ -9,7 +9,7 @@ export class CardHeroeComponent implements OnInit {
 
   @Input() heroe: any = {};
   // input hace q algo pueda venir de afuera, en este caso seria heroe
-  @Input() index: number;
+  @Input() index: number | undefined;
   // tslint:disable-next-line:variable-name
 
   @Output() heroeSeleccionado: EventEmitter<number>;
