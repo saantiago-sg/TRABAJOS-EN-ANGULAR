@@ -12,26 +12,50 @@ export class PassengersComponent implements OnInit {
 
 
   personas: any[] = [];
-  loading: boolean;
-  public page: number | undefined;
+  loading: boolean = true;
+  public page: number = 0;
 
   constructor(private apiService:ApiService, private router:Router) { 
-    this.loading = true;
-
-
-    this.apiService.getPersonas().subscribe( (resp:any) => {
-      this.personas = resp;
-      this.loading = false;
-    });
+   this.getPassengersGlobal();   
   }
 
   ngOnInit(): void {
+  }
+
+  getPassengersGlobal(){
+    this.loading = true;
+
+    this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
+      this.personas = resp;
+      this.loading = false;
+      console.log(resp);
+    });
   }
 
   showPassenger(persona:any){
     this.router.navigate( ['/passenger', persona._id] );
   }
 
+  nextPage(){
+    this.page++;
+    this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
+      this.personas = resp;
+      this.loading = false;
+      console.log(resp);
+    });
+    console.log('next: ' + this.page);
 
+  }
+  
+  prevPage(){
    
+    if( this.page > 0)
+      this.page--;
+      this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
+        this.personas = resp;
+        this.loading = false;
+        console.log(resp);
+      });
+    console.log('prev: ' + this.page);
+  }
 }

@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let persona of personas | paginate: { itemsPerPage: 10, currentPage: page }; let item = index;">
+      <tr *ngFor="let persona of personas; let item = index;">
         <th scope="row">{{item + 1}}</th>
         <td>{{persona.name}}</td>
         <td>{{persona.airline[0].name}}</td>
@@ -21,6 +21,19 @@
       </tr>
     </tbody>
   </table>
-  <app-loading *ngIf="loading"></app-loading>
+ <div class="row">
+   <div class="col-6 text-center">
+    <button class="btn btn-primary" (click)="prevPage()">
+      Anteriores
+    </button>
+   </div>
+   <div class="col-6 text-center">
+    <button class="btn btn-primary" (click)="nextPage()">
+      Siguiente
+    </button>
+   </div>
 
-  <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+ </div> 
+ 
+
+  <app-loading *ngIf="loading"></app-loading>
