@@ -10,22 +10,22 @@ import { PassengersComponent } from '../passengers/passengers.component';
 })
 export class PassengerComponent implements OnInit{
   
-  pasajero: any = {};
+  passengerComp: any = {};
 
   constructor( private activatedRoute: ActivatedRoute, private pasajeroService: ApiService) {
     
     this.activatedRoute.params.subscribe( params => {
-      this.getPersona(params['id']);
+      this.getPassenger(params['id']);
     });
   }
 
   ngOnInit(): void {
   }
 
-  getPersona(id:string){
-    this.pasajeroService.getPersona(id).subscribe( (pasajero: any) => {
-        console.log(pasajero);
-        this.pasajero = pasajero;
+  getPassenger(id:string){
+    this.pasajeroService.getPassenger(id).subscribe( (passengerComp: any) => {
+        console.log(passengerComp);
+        this.passengerComp = passengerComp;
     })
   }
 

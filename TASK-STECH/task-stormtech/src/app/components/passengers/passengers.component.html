@@ -9,13 +9,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let persona of personas; let item = index;">
+      <tr *ngFor="let passenger of passengers; let item = index;">
         <th scope="row">{{item + 1}}</th>
-        <td>{{persona.name}}</td>
-        <td>{{persona.airline[0].name}}</td>
-        <td>{{persona.airline[0].country}}</td>
+        <td>{{passenger.name}}</td>
+        <td>{{passenger.airline[0].name}}</td>
+        <td>{{passenger.airline[0].country}}</td>
         <td>
-            <button (click)="showPassenger(persona)" type="button" class="btn btn-light"> Ver más</button>
+            <button (click)="showPassenger(passenger)" type="button" class="btn btn-light"> Ver más</button>
           <!-- <a [routerLink]="['/persona', item]" class="btn btn-light"> Ver más </a> -->
         </td>
       </tr>
@@ -24,16 +24,22 @@
  <div class="row">
    <div class="col-6 text-center">
     <button class="btn btn-primary" (click)="prevPage()">
-      Anteriores
+      Previous
     </button>
    </div>
    <div class="col-6 text-center">
     <button class="btn btn-primary" (click)="nextPage()">
-      Siguiente
+      Next
     </button>
    </div>
 
  </div> 
+
+ <div class="row mt-3">
+   <div class="col-12">
+    <a class="nav-link btn btn-dark" style="color:white;" aria-current="page" [routerLink]="['/new-passenger']" >Add passenger</a>
+   </div>
+ </div>
  
 
   <app-loading *ngIf="loading"></app-loading>

@@ -16,9 +16,14 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PassengerComponent } from './components/passenger/passenger.component';
 import { LoadingComponent } from './components/loading/loading.component';
+import { NewPassengerComponent } from './components/new-passenger/new-passenger.component';
 
 // pagination
 import { NgxPaginationModule } from 'ngx-pagination';
+
+// forms reactive
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -28,14 +33,16 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PassengersComponent,
     HomeComponent,
     PassengerComponent,
-    LoadingComponent
+    LoadingComponent,
+    NewPassengerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     APP_ROUTING,
     HttpClientModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

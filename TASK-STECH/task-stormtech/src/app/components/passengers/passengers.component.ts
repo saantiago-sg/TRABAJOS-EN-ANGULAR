@@ -10,8 +10,7 @@ import { Router } from '@angular/router';
 })
 export class PassengersComponent implements OnInit {
 
-
-  personas: any[] = [];
+  passengers: any[] = [];
   loading: boolean = true;
   public page: number = 0;
 
@@ -24,9 +23,8 @@ export class PassengersComponent implements OnInit {
 
   getPassengersGlobal(){
     this.loading = true;
-
-    this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
-      this.personas = resp;
+    this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+      this.passengers = resp;
       this.loading = false;
       console.log(resp);
     });
@@ -38,24 +36,18 @@ export class PassengersComponent implements OnInit {
 
   nextPage(){
     this.page++;
-    this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
-      this.personas = resp;
+    this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+      this.passengers = resp;
       this.loading = false;
-      console.log(resp);
     });
-    console.log('next: ' + this.page);
-
   }
   
-  prevPage(){
-   
+  prevPage(){ 
     if( this.page > 0)
       this.page--;
-      this.apiService.getPersonas(this.page).subscribe( (resp:any) => {
-        this.personas = resp;
+      this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+        this.passengers = resp;
         this.loading = false;
-        console.log(resp);
       });
-    console.log('prev: ' + this.page);
   }
 }
