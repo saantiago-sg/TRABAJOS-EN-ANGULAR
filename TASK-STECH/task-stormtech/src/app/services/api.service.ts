@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map } from 'rxjs';
+import { map, Observable } from 'rxjs';
+import { FormGroup } from '@angular/forms';
+import { PassengerI } from '../models/passenger.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
   
-  // url = 'https://api.instantwebtools.net/v1/passenger';
+  urlPassenger = 'https://api.instantwebtools.net/v1/passenger';
 
   constructor( private http: HttpClient) { 
     console.log("service api")
@@ -27,4 +29,9 @@ export class ApiService {
   getPassenger( id: string){
     return this.getQuery(`passenger/${ id }`);
 }
+
+  postPassenger(formPassengerNew:PassengerI):Observable<PassengerI>{
+    let urlnew = this.urlPassenger;
+    return this.http.post<PassengerI>(urlnew,formPassengerNew);
+  }
 }

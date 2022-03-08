@@ -1,6 +1,6 @@
 <h4>Add new passenger</h4>
 <hr>
-<form autocomplete="off" [formGroup]="formPassengerNew" (ngSubmit)="save()">
+<form autocomplete="off" [formGroup]="formPassengerNew" (ngSubmit)="save(formPassengerNew.value)">
     <div>
         <div class="row">
             <div class="col-12">
@@ -25,13 +25,12 @@
                 <label>Airline:</label>
             </div>
             <div class="col-12 mt-1">
-                <input class="form-control" type="text" placeholder="Airline" formControlName="airline" [class.is-invalid]="invalidAirline">
-                <small class="text-danger" *ngIf="invalidAirline">Ingrese nombre de la aerolinea</small>
+                <input class="form-control" type="number" placeholder="Airline" formControlName="airline" [class.is-invalid]="invalidAirline">
+                <small class="text-danger" *ngIf="invalidAirline">Ingrese numero de identificación de la aerolinea</small>
             </div>
         </div>
-
+        <button type="submit" class="mt-4 btn button btn-primary">Save passenger </button>
     </div>
-    <button type="button" class="mt-4 btn button btn-primary">Save passenger </button>
 </form>
 
 
