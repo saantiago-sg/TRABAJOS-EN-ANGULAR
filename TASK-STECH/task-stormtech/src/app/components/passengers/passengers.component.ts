@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import { PassengerData } from 'src/app/models/passenger.interface';
 
 
 @Component({
@@ -10,33 +11,31 @@ import { Router } from '@angular/router';
 })
 export class PassengersComponent implements OnInit {
 
-  passengers: any[] = [];
   loading: boolean = true;
   public page: number = 0;
+  passengers: PassengerData[] = [];
 
   constructor(private apiService:ApiService, private router:Router) { 
-   this.getPassengersGlobal();   
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
+    this.getPassengers();
   }
-
-  getPassengersGlobal(){
-    this.loading = true;
-    this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+  
+  getPassengers(){
+    this.apiService.getPassengers(this.page).subscribe( resp => {
       this.passengers = resp;
       this.loading = false;
-      console.log(resp);
     });
   }
 
-  showPassenger(persona:any){
+  showPassenger(persona:PassengerData){
     this.router.navigate( ['/passenger', persona._id] );
   }
 
   nextPage(){
     this.page++;
-    this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+    this.apiService.getPassengers(this.page).subscribe( resp => {
       this.passengers = resp;
       this.loading = false;
     });
@@ -45,7 +44,7 @@ export class PassengersComponent implements OnInit {
   prevPage(){ 
     if( this.page > 0)
       this.page--;
-      this.apiService.getPassengers(this.page).subscribe( (resp:any) => {
+      this.apiService.getPassengers(this.page).subscribe( resp => {
         this.passengers = resp;
         this.loading = false;
       });

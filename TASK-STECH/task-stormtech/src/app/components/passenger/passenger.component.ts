@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { PassengerModel } from 'src/app/models/passenger.model';
 import { ApiService } from 'src/app/services/api.service';
-import { PassengersComponent } from '../passengers/passengers.component';
 
 @Component({
   selector: 'app-passenger',
@@ -10,22 +10,22 @@ import { PassengersComponent } from '../passengers/passengers.component';
 })
 export class PassengerComponent implements OnInit{
   
-  passengerComp: any = {};
+  passenger: PassengerModel = new PassengerModel();
 
-  constructor( private activatedRoute: ActivatedRoute, private pasajeroService: ApiService) {
-    
+  constructor( private activatedRoute: ActivatedRoute, private apiService: ApiService) {
+
     this.activatedRoute.params.subscribe( params => {
       this.getPassenger(params['id']);
-    });
+  });    
+
   }
 
   ngOnInit(): void {
   }
 
   getPassenger(id:string){
-    this.pasajeroService.getPassenger(id).subscribe( (passengerComp: any) => {
-        console.log(passengerComp);
-        this.passengerComp = passengerComp;
+    this.apiService.getPassenger(id).subscribe( resp => {
+        this.passenger = resp;
     })
   }
 

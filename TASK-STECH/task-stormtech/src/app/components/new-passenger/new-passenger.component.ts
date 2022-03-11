@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { PassengerI } from 'src/app/models/passenger.interface';
 import { ApiService } from 'src/app/services/api.service';
 
@@ -13,29 +12,23 @@ import { ApiService } from 'src/app/services/api.service';
 export class NewPassengerComponent implements OnInit {
 
   createFormGroup(){
-    return new FormGroup({
-      _id: new FormControl(''),
-      name: new FormControl('', Validators.required),
-      trips: new FormControl('', Validators.required),
-      airline: new FormControl('', Validators.required),
-    });
+    return this.fb.group({
+      name: ['', [Validators.required]],
+      trips: ['', {validators:[Validators.required]}],  // permite como si fueran opciones
+      airline: ['', [Validators.required]],
+    })
   }
 
   formPassengerNew: FormGroup;
   
-  constructor( private fb: FormBuilder, private api: ApiService, private router: Router) {  
+  constructor( private api: ApiService, private fb: FormBuilder ) {  
     this.formPassengerNew = this.createFormGroup();
   }
   
-  ngOnInit(): void {
-    let id = localStorage.getItem('token');
-    this.formPassengerNew.patchValue({
-      '_id': id
-    });
+  ngOnInit(): void {    
   }
 
   save(formPassengerNew:PassengerI){
-    console.log('ee'+ this.formPassengerNew);
       if(this.formPassengerNew.invalid){
         Object.values(this.formPassengerNew.controls).forEach( control => {
           control.markAllAsTouched();

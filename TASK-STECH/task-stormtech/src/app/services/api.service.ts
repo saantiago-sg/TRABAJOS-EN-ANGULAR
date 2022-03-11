@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { map, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import { FormGroup } from '@angular/forms';
-import { PassengerI } from '../models/passenger.interface';
+import { PassengerData, PassengerI } from '../models/passenger.interface';
+import { PassengersI } from '../models/passengers.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,6 @@ export class ApiService {
   urlPassenger = 'https://api.instantwebtools.net/v1/passenger';
 
   constructor( private http: HttpClient) { 
-    console.log("service api")
   }
 
   getQuery( query: string){
@@ -22,12 +22,17 @@ export class ApiService {
   }
 
   getPassengers(page:number){
-    console.log('geeet' + page);
-    return this.getQuery(`passenger/?page=${ page }&size=10`).pipe(map ( (resp : any) => resp['data']));
+    let urlP = `https://api.instantwebtools.net/v1/passenger/?page=${ page }&size=10`;
+    return this.http.get<PassengersI>(urlP).pipe(map ( (resp : PassengersI) => resp.data));
   }
 
   getPassenger( id: string){
-    return this.getQuery(`passenger/${ id }`);
+    const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
+    return this.http.get<PassengerData>(urlpass).pipe(
+      map( resp => {
+        return resp
+      }));
+    // return this.getQuery(`passenger/${ id }`);
 }
 
   postPassenger(formPassengerNew:PassengerI):Observable<PassengerI>{
