@@ -12,6 +12,7 @@ export class AirlineArreglo {
 }
 
 export class PassengerModel{
+    _id?:number;
     name?: string;
     trips?: number;
     airline?: AirlineArreglo[];

@@ -17,12 +17,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { PassengerComponent } from './components/passenger/passenger.component';
 import { LoadingComponent } from './components/loading/loading.component';
 import { NewPassengerComponent } from './components/new-passenger/new-passenger.component';
+import { FormsModule } from '@angular/forms';
+
 
 // pagination
 import { NgxPaginationModule } from 'ngx-pagination';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 // forms reactive
 import { ReactiveFormsModule } from '@angular/forms';
+import { EditPassengerComponent } from './components/edit-passenger/edit-passenger.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -35,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     PassengerComponent,
     LoadingComponent,
     NewPassengerComponent,
+    EditPassengerComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +50,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     NgxPaginationModule,
     ReactiveFormsModule,
+    FormsModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

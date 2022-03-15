@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PassengerData } from 'src/app/models/passenger.interface';
 
 
+
 @Component({
   selector: 'app-passengers',
   templateUrl: './passengers.component.html',
@@ -14,6 +15,7 @@ export class PassengersComponent implements OnInit {
   loading: boolean = true;
   public page: number = 0;
   passengers: PassengerData[] = [];
+  buttonDisabled: boolean = false;
 
   constructor(private apiService:ApiService, private router:Router) { 
   }
@@ -33,12 +35,26 @@ export class PassengersComponent implements OnInit {
     this.router.navigate( ['/passenger', persona._id] );
   }
 
-  nextPage(){
-    this.page++;
-    this.apiService.getPassengers(this.page).subscribe( resp => {
-      this.passengers = resp;
-      this.loading = false;
-    });
+  updatePassenger(persona:PassengerData){
+    this.router.navigate( ['/passenger', persona._id] );
+  }
+
+  nextPage(size: number){
+    if(this.page >= 0 && size > 0){
+      this.page++;
+      this.apiService.getPassengers(this.page).subscribe( resp => {
+              this.passengers = resp;
+              this.loading = false;
+              if(size<= 0){
+                this.buttonDisabled = true;
+              }else{
+                this.buttonDisabled = false;
+              }
+      });    
+    }
+    else{
+      this.buttonDisabled = true;
+    }
   }
   
   prevPage(){ 
@@ -47,6 +63,7 @@ export class PassengersComponent implements OnInit {
       this.apiService.getPassengers(this.page).subscribe( resp => {
         this.passengers = resp;
         this.loading = false;
+        this.buttonDisabled = false;
       });
   }
 }

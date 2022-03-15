@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { delay, map, Observable } from 'rxjs';
-import { FormGroup } from '@angular/forms';
+import { map, Observable } from 'rxjs';
 import { PassengerData, PassengerI } from '../models/passenger.interface';
 import { PassengersI } from '../models/passengers.interface';
 
@@ -25,18 +24,22 @@ export class ApiService {
     let urlP = `https://api.instantwebtools.net/v1/passenger/?page=${ page }&size=10`;
     return this.http.get<PassengersI>(urlP).pipe(map ( (resp : PassengersI) => resp.data));
   }
-
-  getPassenger( id: string){
+  
+  getPassenger( id: any){
     const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
     return this.http.get<PassengerData>(urlpass).pipe(
       map( resp => {
         return resp
       }));
-    // return this.getQuery(`passenger/${ id }`);
-}
+  }
 
-  postPassenger(formPassengerNew:PassengerI):Observable<PassengerI>{
+  addPassenger(formPassengerNew: PassengerData):Observable<PassengerData>{
     let urlnew = this.urlPassenger;
-    return this.http.post<PassengerI>(urlnew,formPassengerNew);
+    return this.http.post<PassengerData>(urlnew, formPassengerNew);
+  }
+
+  updatePassenger(id:number, formPassengerNew: PassengerData){
+    const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
+    return this.http.put(urlpass, formPassengerNew);
   }
 }

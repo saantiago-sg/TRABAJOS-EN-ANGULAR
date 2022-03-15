@@ -1,5 +1,5 @@
-<h4 class="title-page">Add new passenger</h4>
-<form class="form-passenger" autocomplete="off" [formGroup]="formPassengerNew" (ngSubmit)="save(formPassengerNew.value)">
+<h4 class="title-page">Edit passenger</h4>
+<form class="form-passenger" autocomplete="off" [formGroup]="formPassengerNew" (ngSubmit)="updateData(formPassengerNew.value)">
     <div>
         <div class="row">
             <div class="col-12">
@@ -30,7 +30,7 @@
         </div>
         <div class="row d-flex align-items-center mt-5">
             <div class="col-6">
-                <button type="submit" class="mt-4 btn button btn-primary">Save passenger </button>
+             <button type="submit" class="btn button btn-primary">Save passenger </button>
             </div>
             <div class="col-6 text-end">
                 <button routerLink="/passengers" class="btn btn-outline-danger">Cancelar</button>
@@ -38,3 +38,9 @@
         </div>
     </div>
 </form>
+<!-- <hr>
+<pre>
+    status: {{formPassengerNew.status}}
+
+     {{ formPassengerNew.value | json }}
+</pre> -->
