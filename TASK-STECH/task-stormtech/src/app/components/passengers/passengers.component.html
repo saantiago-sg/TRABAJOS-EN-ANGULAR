@@ -7,7 +7,7 @@
         <th scope="col">City</th>
         <th scope="col">See passenger</th>
         <th scope="col">Edit passenger</th>
-        <!-- <th scope="col">Delete passenger</th> -->
+        <th scope="col">Delete passenger</th>
       </tr>
     </thead>
     <tbody>
@@ -22,9 +22,9 @@
         <td>
           <button routerLink="/edit-passenger/{{passenger._id}}"  type="button" class="btn btn-light"> Edit</button>
         </td>
-        <!-- <td>
-          <button routerLink="/edit-passenger/{{passenger._id}}"  type="button" class="btn btn-light"> Delete</button>
-        </td> -->
+        <td>
+          <button (click)="deletePassenger(passenger, item)"  type="button" class="btn btn-light"> Delete</button>
+        </td>
       </tr>
     </tbody>
   </table>

@@ -23,7 +23,7 @@ export class PassengerComponent implements OnInit{
   ngOnInit(): void {
   }
 
-  getPassenger(id:string){
+  getPassenger(id:number){
     this.apiService.getPassenger(id).subscribe( resp => {
         this.passenger = resp;
     })

@@ -27,7 +27,7 @@ export class ApiService {
     return this.http.get<PassengersI>(urlP).pipe(map ( (resp : PassengersI) => resp.data));
   }
   
-  getPassenger( id: any){
+  getPassenger( id: number){
     const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
     return this.http.get<PassengerData>(urlpass).pipe(
       map( resp => {
@@ -43,6 +43,11 @@ export class ApiService {
   updatePassenger(id:number, formPassengerNew: PassengerData){
     const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
     return this.http.put(urlpass, formPassengerNew);
+  }
+  
+  deletePassenger(id: number){
+    const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
+    return this.http.delete(urlpass);
   }
 
   getAirlines(){
