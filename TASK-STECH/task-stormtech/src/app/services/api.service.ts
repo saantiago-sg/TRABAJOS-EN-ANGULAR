@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { PassengerData, PassengerI } from '../models/passenger.interface';
 import { PassengersI } from '../models/passengers.interface';
+import { AirlineArreglo } from '../models/passenger.model';
+import { AirlineI } from '../models/airline.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +43,10 @@ export class ApiService {
   updatePassenger(id:number, formPassengerNew: PassengerData){
     const urlpass = `https://api.instantwebtools.net/v1/passenger/${ id }`;
     return this.http.put(urlpass, formPassengerNew);
+  }
+
+  getAirlines(){
+    const urlAirline = 'https://api.instantwebtools.net/v1/airlines';
+    return this.http.get<AirlineI>(urlAirline).pipe(map ( (resp: AirlineI) => resp))
   }
 }

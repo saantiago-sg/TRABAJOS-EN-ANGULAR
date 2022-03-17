@@ -24,8 +24,15 @@
                 <label>Airline:</label>
             </div>
             <div class="col-12 mt-1">
-                <input class="form-control" type="number" placeholder="Airline" formControlName="airline" [class.is-invalid]="invalidAirline">
+                <!-- <input class="form-control" type="number" placeholder="Airline" formControlName="airline" [class.is-invalid]="invalidAirline"> -->
+                
+                <select name="airlines" class="form-control" formControlName="airline" [class.is-invalid]="invalidAirline">
+                    <option>Select</option>
+                    <option [value]="item.id" *ngFor="let item of airlines">{{item.name}}</option>
+                </select>
                 <small class="text-danger" *ngIf="invalidAirline">Ingrese numero de identificación de la aerolinea</small>
+
+               
             </div>
         </div>
         <div class="row d-flex align-items-center mt-5">

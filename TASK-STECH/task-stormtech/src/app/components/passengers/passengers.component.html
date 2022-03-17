@@ -7,20 +7,24 @@
         <th scope="col">City</th>
         <th scope="col">See passenger</th>
         <th scope="col">Edit passenger</th>
+        <!-- <th scope="col">Delete passenger</th> -->
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let passenger of passengers; let item = index;">
         <th scope="row">{{item + 1}}</th>
         <td>{{passenger.name}}</td>
-        <td>{{passenger.airline[0].name}}</td>
-        <td>{{passenger.airline[0].country}}</td>
+        <td>{{passenger.airline? passenger.airline[0]?.name: ''}}</td>
+        <td>{{passenger.airline? passenger.airline[0].country: ''}}</td>
         <td>
             <button (click)="showPassenger(passenger)" type="button" class="btn btn-light"> See more</button>
         </td>
         <td>
           <button routerLink="/edit-passenger/{{passenger._id}}"  type="button" class="btn btn-light"> Edit</button>
         </td>
+        <!-- <td>
+          <button routerLink="/edit-passenger/{{passenger._id}}"  type="button" class="btn btn-light"> Delete</button>
+        </td> -->
       </tr>
     </tbody>
   </table>

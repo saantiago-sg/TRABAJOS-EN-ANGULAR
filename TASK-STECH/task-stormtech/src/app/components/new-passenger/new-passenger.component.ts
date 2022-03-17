@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AirlineI } from 'src/app/models/airline.interface';
 import { PassengerData } from 'src/app/models/passenger.interface';
-import { PassengerModel } from 'src/app/models/passenger.model';
+import { AirlineArreglo, PassengerModel } from 'src/app/models/passenger.model';
 import { ApiService } from 'src/app/services/api.service';
 import Swal from 'sweetalert2';
 
@@ -15,16 +16,22 @@ export class NewPassengerComponent implements OnInit {
 
   formPassengerNew: FormGroup;
   passenger: PassengerModel = new PassengerModel();
-  
-  
+  airlines: AirlineI[] = [];
+
   constructor( private api: ApiService, private fb: FormBuilder) {  
     this.formPassengerNew = this.createFormGroup();
   }
   
   ngOnInit(): void {    
+    this.getAirlines();
   }
 
-
+    getAirlines(){
+      this.api.getAirlines().subscribe( (resp:any) => {
+      this.airlines = resp;
+        console.log(this.airlines);
+      });
+    }
   
   createFormGroup(){
     return this.fb.group({
@@ -40,6 +47,7 @@ export class NewPassengerComponent implements OnInit {
         control.markAllAsTouched();
       })
     }else{
+      console.log(formPassengerNew);
       Swal.fire({
         title: 'Please wait',
         text: 'Saving information',
@@ -47,6 +55,7 @@ export class NewPassengerComponent implements OnInit {
       });
       Swal.showLoading()
       this.api.addPassenger(formPassengerNew).subscribe( data => {
+        console.log(data._id);
         Swal.fire({
           icon: 'success',
           title: data.name + ' was added successfully',

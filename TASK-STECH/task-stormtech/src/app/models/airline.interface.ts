@@ -1,4 +1,5 @@
 export interface AirlineI{ 
+    id: number,
     name: string,
     country: string,
     logo: string,
