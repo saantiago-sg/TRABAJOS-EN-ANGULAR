@@ -32,3 +32,6 @@ a{
 table{
   vertical-align: middle!important;
 }
+th, td{
+  text-align: center;
+}

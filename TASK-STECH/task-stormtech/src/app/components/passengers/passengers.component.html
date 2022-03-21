@@ -17,13 +17,13 @@
         <td>{{passenger.airline? passenger.airline[0]?.name: ''}}</td>
         <td>{{passenger.airline? passenger.airline[0].country: ''}}</td>
         <td>
-            <button (click)="showPassenger(passenger)" type="button" class="btn btn-light"> See more</button>
+            <a (click)="showPassenger(passenger)" type="button"> <img src="../../../assets/images/ver-mas.png" width="32px"></a>
         </td>
         <td>
-          <button routerLink="/edit-passenger/{{passenger._id}}"  type="button" class="btn btn-light"> Edit</button>
+         <a routerLink="/edit-passenger/{{passenger._id}}"  type="button"> <img src="../../../assets/images/editar.png" width="32px"></a>
         </td>
         <td>
-          <button (click)="deletePassenger(passenger, item)"  type="button" class="btn btn-light"> Delete</button>
+          <a (click)="deletePassenger(passenger, item)"  type="button"> <img src="../../../assets/images/delete.png" width="32px"></a>
         </td>
       </tr>
     </tbody>
